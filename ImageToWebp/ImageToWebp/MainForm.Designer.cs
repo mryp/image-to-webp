@@ -35,6 +35,9 @@ namespace ImageToWebp
             this.startButton = new System.Windows.Forms.Button();
             this.imageOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.bgWorker = new System.ComponentModel.BackgroundWorker();
+            this.qualityNumeric = new System.Windows.Forms.NumericUpDown();
+            this.label2 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.qualityNumeric)).BeginInit();
             this.SuspendLayout();
             // 
             // filePathTextBox
@@ -65,7 +68,7 @@ namespace ImageToWebp
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(12, 56);
+            this.startButton.Location = new System.Drawing.Point(12, 87);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(788, 46);
             this.startButton.TabIndex = 3;
@@ -85,11 +88,39 @@ namespace ImageToWebp
             this.bgWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorker_ProgressChanged);
             this.bgWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bgWorker_RunWorkerCompleted);
             // 
+            // qualityNumeric
+            // 
+            this.qualityNumeric.Location = new System.Drawing.Point(114, 45);
+            this.qualityNumeric.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.qualityNumeric.Name = "qualityNumeric";
+            this.qualityNumeric.Size = new System.Drawing.Size(110, 27);
+            this.qualityNumeric.TabIndex = 4;
+            this.qualityNumeric.Value = new decimal(new int[] {
+            75,
+            0,
+            0,
+            0});
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "品質：";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 119);
+            this.ClientSize = new System.Drawing.Size(812, 143);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.qualityNumeric);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.filePathRefButton);
             this.Controls.Add(this.label1);
@@ -100,6 +131,7 @@ namespace ImageToWebp
             this.Text = "Image to Webp";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainForm_FormClosing);
             this.Load += new System.EventHandler(this.mainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.qualityNumeric)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,6 +145,8 @@ namespace ImageToWebp
         private System.Windows.Forms.Button startButton;
         private System.Windows.Forms.OpenFileDialog imageOpenFileDialog;
         private System.ComponentModel.BackgroundWorker bgWorker;
+        private System.Windows.Forms.NumericUpDown qualityNumeric;
+        private System.Windows.Forms.Label label2;
     }
 }
 

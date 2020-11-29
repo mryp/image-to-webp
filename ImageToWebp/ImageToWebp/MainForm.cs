@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WebPWrapper;
 
 namespace ImageToWebp
 {
@@ -70,7 +71,7 @@ namespace ImageToWebp
             bgWorker.RunWorkerAsync(new WorkerParam()
             {
                 FilePath = filePath,
-                Quality = 90,
+                Quality = (int)qualityNumeric.Value,
             });
         }
 
@@ -118,8 +119,13 @@ namespace ImageToWebp
 
             try
             {
-                var image = Image.FromFile(imagePath);
-
+                var bitmap = new Bitmap(imagePath);
+                var convBitmap = bitmap.Clone(new Rectangle(0, 0, bitmap.Width, bitmap.Height)
+                    , System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                using (WebP webp = new WebP())
+                {
+                    webp.Save(convBitmap, outputPath, quality);
+                }
             }
             catch (Exception e)
             {
