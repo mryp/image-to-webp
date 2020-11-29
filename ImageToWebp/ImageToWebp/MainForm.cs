@@ -101,9 +101,31 @@ namespace ImageToWebp
             e.Result = $"処理結果 {result}";
         }
 
-        private static bool imageToWebp(string filePath, int quality)
+        private static bool imageToWebp(string imagePath, int quality)
         {
+            var dirPath = Path.GetDirectoryName(imagePath);
+            if (dirPath == null)
+            {
+                Log.Warn($"ファイルパスはフルパスで指定してください file={imagePath}");
+                return false;
+            }
+            var outputPath = Path.Combine(dirPath, Path.GetFileNameWithoutExtension(imagePath) + ".webp");
+            if (File.Exists(outputPath))
+            {
+                Log.Warn($"ファイルが既に存在しています file={outputPath}");
+                return false;
+            }
 
+            try
+            {
+                var image = Image.FromFile(imagePath);
+
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, "変換処理例外");
+                return false;
+            }
 
             return true;
         }
